@@ -9,18 +9,18 @@
   
   <title>CentOS下 Oracle 12c R2 静默安装 | 程序猿天度</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="¶环境: 	OS:centos7 	Oracle:Oracle 12.2.0.1    database安装文件下载  	[官网](http://www.oracle.com/technetwork/database/enterprise-edition/downloads/index.html) 	我的网盘:  [链接](https://pan.baidu.com/s/1Sbw3ZjkJePr9">
+  <meta name="description" content="¶环境: ¶文件准备 	阿里云ECS：centos7 ,也可使用其他linux 环境 	Oracle:Oracle 12.2.0.1  database安装文件下载方式： [官网](http://www.oracle.com/technetwork/database/enterprise-edition/downloads/index.html) 我的网盘:  [链接](https://pan.b">
 <meta name="keywords" content="oracle安装">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CentOS下 Oracle 12c R2 静默安装">
 <meta property="og:url" content="http://www.blog.tiandu.tech/2018/04/22/Oracle-12c-R2_静默安装/index.html">
 <meta property="og:site_name" content="程序猿天度">
-<meta property="og:description" content="¶环境: 	OS:centos7 	Oracle:Oracle 12.2.0.1    database安装文件下载  	[官网](http://www.oracle.com/technetwork/database/enterprise-edition/downloads/index.html) 	我的网盘:  [链接](https://pan.baidu.com/s/1Sbw3ZjkJePr9">
+<meta property="og:description" content="¶环境: ¶文件准备 	阿里云ECS：centos7 ,也可使用其他linux 环境 	Oracle:Oracle 12.2.0.1  database安装文件下载方式： [官网](http://www.oracle.com/technetwork/database/enterprise-edition/downloads/index.html) 我的网盘:  [链接](https://pan.b">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-04-24T13:56:18.658Z">
+<meta property="og:updated_time" content="2018-04-24T14:07:41.932Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CentOS下 Oracle 12c R2 静默安装">
-<meta name="twitter:description" content="¶环境: 	OS:centos7 	Oracle:Oracle 12.2.0.1    database安装文件下载  	[官网](http://www.oracle.com/technetwork/database/enterprise-edition/downloads/index.html) 	我的网盘:  [链接](https://pan.baidu.com/s/1Sbw3ZjkJePr9">
+<meta name="twitter:description" content="¶环境: ¶文件准备 	阿里云ECS：centos7 ,也可使用其他linux 环境 	Oracle:Oracle 12.2.0.1  database安装文件下载方式： [官网](http://www.oracle.com/technetwork/database/enterprise-edition/downloads/index.html) 我的网盘:  [链接](https://pan.b">
   
     <link rel="alternative" href="/atom.xml" title="程序猿天度" type="application/atom+xml">
   
@@ -313,39 +313,25 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h3 id="环境"><a class="header-anchor" href="#环境">¶</a>环境:</h3>
-<pre><code>	OS:centos7
+        <h2 id="环境"><a class="header-anchor" href="#环境">¶</a>环境:</h2>
+<h3 id="文件准备"><a class="header-anchor" href="#文件准备">¶</a>文件准备</h3>
+<pre><code>	阿里云ECS：centos7 ,也可使用其他linux 环境
 	Oracle:Oracle 12.2.0.1
-</code></pre>
-<hr>
-<ul>
-<li>database安装文件下载</li>
-</ul>
-<pre><code>	[官网](http://www.oracle.com/technetwork/database/enterprise-edition/downloads/index.html)
-	我的网盘:  [链接](https://pan.baidu.com/s/1Sbw3ZjkJePr989IPqs7D9g):https://pan.baidu.com/s/1Sbw3ZjkJePr989IPqs7D9g   密码：qkt1
+
+database安装文件下载方式：
+[官网](http://www.oracle.com/technetwork/database/enterprise-edition/downloads/index.html)
+我的网盘:  [链接](https://pan.baidu.com/s/1Sbw3ZjkJePr989IPqs7D9g):https://pan.baidu.com/s/1Sbw3ZjkJePr989IPqs7D9g   密码：qkt1
 </code></pre>
 <hr>
 <a id="more"></a>
-<h3 id="安装准备"><a class="header-anchor" href="#安装准备">¶</a>安装准备</h3>
-<ul>
-<li>
-<ol>
-<li>Hosts file</li>
-</ol>
-</li>
-</ul>
+<h2 id="安装准备"><a class="header-anchor" href="#安装准备">¶</a>安装准备</h2>
+<h4 id="1-hosts-file"><a class="header-anchor" href="#1-hosts-file">¶</a>1.Hosts file</h4>
 <pre><code>	cat /etc/hosts  
 	127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4  
 	::1         localhost localhost.localdomain localhost6 localhost6.localdomain6  
 	192.168.0.109   centos7  
 </code></pre>
-<ul>
-<li>
-<ol start="2">
-<li>配置/etc/sysctl.conf</li>
-</ol>
-</li>
-</ul>
+<h4 id="2-配置-etc-sysctl-conf"><a class="header-anchor" href="#2-配置-etc-sysctl-conf">¶</a>2.配置/etc/sysctl.conf</h4>
 <pre><code>	[root@centos7 ~]# vim /etc/sysctl.conf  
 	# System default settings live in /usr/lib/sysctl.d/00-system.conf.  
 	# To override those settings, enter new settings here, or in an /etc/sysctl.d/&lt;name&gt;.conf file  
@@ -371,13 +357,7 @@
 	#使配置生效
 	[root@centos7 ~]# /sbin/sysctl -p
 </code></pre>
-<ul>
-<li>
-<ol start="3">
-<li>配置/etc/security/limits.d/20-nproc.conf</li>
-</ol>
-</li>
-</ul>
+<h4 id="3-配置-etc-security-limits-d-20-nproc-conf"><a class="header-anchor" href="#3-配置-etc-security-limits-d-20-nproc-conf">¶</a>3.配置/etc/security/limits.d/20-nproc.conf</h4>
 <pre><code>	[root@centos7 ~]# vim /etc/security/limits.d/20-nproc.conf  
 	# Default limit for number of user's processes to prevent  
 	# accidental fork bombs.  
@@ -394,22 +374,10 @@
 	oracle   hard   memlock    134217728  
 	oracle   soft   memlock    134217728  
 </code></pre>
-<ul>
-<li>
-<ol start="4">
-<li>安装一些包：</li>
-</ol>
-</li>
-</ul>
+<h4 id="4-安装一些包："><a class="header-anchor" href="#4-安装一些包：">¶</a>4.安装一些包：</h4>
 <pre><code>	yum install -y binutils     compat-libcap1   compat-libstdc++-33   compat-libstdc++-33.i686   glibc   glibc.i686   glibc-devel   glibc-devel.i686   ksh   libaio   libaio.i686   libaio-devel   libaio-devel.i686   libX11   libX11.i686   libXau   libXau.i686   libXi   libXi.i686   libXtst   libXtst.i686   libgcc   libgcc.i686   libstdc++   libstdc++.i686   libstdc++-devel   libstdc++-devel.i686   libxcb   libxcb.i686   make   nfs-utils   net-tools   smartmontools   sysstat   unixODBC   unixODBC-devel   gcc    gcc-c++    libXext    libXext.i686    zlib-devel    zlib-devel.i686
 </code></pre>
-<ul>
-<li>
-<ol start="5">
-<li>创建用户和组</li>
-</ol>
-</li>
-</ul>
+<h4 id="5-创建用户和组"><a class="header-anchor" href="#5-创建用户和组">¶</a>5.创建用户和组</h4>
 <pre><code>	[root@centos7 ~]# unzip linuxx64_12201_database.zip ^C  
 	[root@centos7 ~]# groupadd -g 54321 oinstall  
 	[root@centos7 ~]# groupadd -g 54322 dba  
@@ -417,37 +385,19 @@
 	[root@centos7 ~]# useradd -u 54321 -g oinstall -G dba,oper oracle  
 	[root@centos7 ~]# passwd oracle  
 </code></pre>
-<ul>
-<li>
-<ol start="6">
-<li>关闭selinux和防火墙：</li>
-</ol>
-</li>
-</ul>
+<h4 id="6-关闭selinux和防火墙："><a class="header-anchor" href="#6-关闭selinux和防火墙：">¶</a>6.关闭selinux和防火墙：</h4>
 <pre><code>	vim /etc/selinux/config  
 	SELINUX=disabled  
 	[root@centos7 ~]# systemctl stop firewalld  
 	[root@centos7 ~]# systemctl disable firewalld  
 </code></pre>
-<ul>
-<li>
-<ol start="7">
-<li>创建目录：</li>
-</ol>
-</li>
-</ul>
+<h4 id="7-创建目录："><a class="header-anchor" href="#7-创建目录：">¶</a>7.创建目录：</h4>
 <pre><code>	[root@centos7 ~]# mkdir -p /u01/app/oracle/product/12.2.0.1/db_1  
 	[root@centos7 ~]#  
 	[root@centos7 ~]# chown -R oracle:oinstall /u01  
 	[root@centos7 ~]# chmod 775 /u01  
 </code></pre>
-<ul>
-<li>
-<ol start="8">
-<li>配置环境变量：</li>
-</ol>
-</li>
-</ul>
+<h4 id="8-配置环境变量："><a class="header-anchor" href="#8-配置环境变量：">¶</a>8.配置环境变量：</h4>
 <pre><code>	[root@centos7 ~]# vim /home/oracle/.bash_profile  
 	# .bash_profile  
 	  
@@ -478,14 +428,8 @@
 	export CLASSPATH=$ORACLE_HOME/jlib:$ORACLE_HOME/rdbms/jlib  
 </code></pre>
 <hr>
-<h3 id="安装"><a class="header-anchor" href="#安装">¶</a>安装</h3>
-<ul>
-<li>
-<ol>
-<li>编辑应答文件： vi /u01/database/response/db_install.rsp</li>
-</ol>
-</li>
-</ul>
+<h2 id="安装"><a class="header-anchor" href="#安装">¶</a>安装</h2>
+<h4 id="1-编辑应答文件：-vi-u01-database-response-db-install-rsp"><a class="header-anchor" href="#1-编辑应答文件：-vi-u01-database-response-db-install-rsp">¶</a>1.编辑应答文件： vi /u01/database/response/db_install.rsp</h4>
 <pre><code>	oracle.install.responseFileVersion=/oracle/install/rspfmt_dbinstall_response_schema_v12.2.0  
 	oracle.install.option=INSTALL_DB_SWONLY  
 	UNIX_GROUP_NAME=oinstall  
@@ -506,13 +450,7 @@
 	SECURITY_UPDATES_VIA_MYORACLESUPPORT=false  
 	DECLINE_SECURITY_UPDATES=true  
 </code></pre>
-<ul>
-<li>
-<ol start="2">
-<li>开始安装:</li>
-</ol>
-</li>
-</ul>
+<h4 id="2-开始安装"><a class="header-anchor" href="#2-开始安装">¶</a>2.开始安装:</h4>
 <pre><code>	[oracle@centos7 database]$ ./runInstaller -force -silent -noconfig -responseFile /u01/database/response/db_install.rsp  
 	Starting Oracle Universal Installer...  
 	  
@@ -533,13 +471,7 @@
 	  
 	Successfully Setup Software.  
 </code></pre>
-<ul>
-<li>
-<ol start="3">
-<li>安装提示执行两个脚本：</li>
-</ol>
-</li>
-</ul>
+<h4 id="3-安装提示执行两个脚本："><a class="header-anchor" href="#3-安装提示执行两个脚本：">¶</a>3.安装提示执行两个脚本：</h4>
 <pre><code>	[root@centos7 ~]# /u01/app/oracle/oraInventory/orainstRoot.sh  
 	Changing permissions of /u01/app/oracle/oraInventory.  
 	Adding read,write permissions for group.  
@@ -550,13 +482,7 @@
 	[root@centos7 ~]# /u01/app/oracle/product/12.2.0.1/db_1/root.sh  
 	Check /u01/app/oracle/product/12.2.0.1/db_1/install/root_centos7_2018-04-15_22-08-27-846246575.log for the output of root script  
 </code></pre>
-<ul>
-<li>
-<ol start="4">
-<li>配置，添加监听：</li>
-</ol>
-</li>
-</ul>
+<h4 id="4-配置-添加监听："><a class="header-anchor" href="#4-配置-添加监听：">¶</a>4.配置，添加监听：</h4>
 <pre><code>	[oracle@centos7 response]$ cat /home/oracle/database/response/netca.rsp | grep -Ev &quot;^#|^$&quot;  
 	  
 	[GENERAL]  
@@ -614,13 +540,7 @@
 	The listener supports no services  
 	The command completed successfully  
 </code></pre>
-<ul>
-<li>
-<ol start="5">
-<li>创建数据库，修改相应文件，有些参数有默认值就不需要</li>
-</ol>
-</li>
-</ul>
+<h4 id="5-创建数据库-修改相应文件-有些参数有默认值就不需要"><a class="header-anchor" href="#5-创建数据库-修改相应文件-有些参数有默认值就不需要">¶</a>5.创建数据库，修改相应文件，有些参数有默认值就不需要</h4>
 <pre><code>	[oracle@centos7 response]$ cat /home/oracle/dbca.rsp | grep -Ev '^#|^$'  
 	responseFileVersion=/oracle/assistants/rspfmt_dbca_response_schema_v12.2.0  
 	gdbName=db1  
@@ -681,13 +601,7 @@
 	automaticMemoryManagement=true  
 	totalMemory=0  
 </code></pre>
-<ul>
-<li>
-<ol start="6">
-<li>创建数据库</li>
-</ol>
-</li>
-</ul>
+<h4 id="6-创建数据库"><a class="header-anchor" href="#6-创建数据库">¶</a>6.创建数据库</h4>
 <pre><code>	[oracle@centos7 response]$ dbca -silent -createDatabase  -responseFile  /home/oracle/dbca.rsp  
 	  
 	[WARNING] [DBT-06801] Specified Fast Recovery Area size (2,780 MB) is less than the recommended value.  
@@ -744,13 +658,7 @@
 	100% complete  
 	Look at the log file &quot;/u01/app/oracle/cfgtoollogs/dbca/db1/db1.log&quot; for further details.  
 </code></pre>
-<ul>
-<li>
-<ol start="7">
-<li>查看状态</li>
-</ol>
-</li>
-</ul>
+<h4 id="7-查看状态"><a class="header-anchor" href="#7-查看状态">¶</a>7.查看状态</h4>
 <pre><code>	[oracle@centos7 response]$ sqlplus / as sysdba  
 	SQL*Plus: Release 12.2.0.1.0 Production on Sun Apr 15 23:07:08 2018  
 	  
@@ -783,7 +691,7 @@
         <p><span>本文标题:</span><a  href="/2018/04/22/Oracle-12c-R2_静默安装/">CentOS下 Oracle 12c R2 静默安装</a></p>
         <p><span>文章作者:</span><a  href="/" title="访问 天度 的个人博客">天度</a></p>
         <p><span>发布时间:</span>2018年04月22日 - 00时00分</p>
-        <p><span>最后更新:</span>2018年04月24日 - 21时56分</p>
+        <p><span>最后更新:</span>2018年04月24日 - 22时07分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2018/04/22/Oracle-12c-R2_静默安装/" title="CentOS下 Oracle 12c R2 静默安装">http://www.blog.tiandu.tech/2018/04/22/Oracle-12c-R2_静默安装/</a>
             <span class="copy-path" data-clipboard-text="原文: http://www.blog.tiandu.tech/2018/04/22/Oracle-12c-R2_静默安装/　　作者: 天度" title=""></span>
@@ -820,7 +728,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#环境"><span class="toc-number">1.</span> <span class="toc-text">¶环境:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装准备"><span class="toc-number">2.</span> <span class="toc-text">¶安装准备</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装"><span class="toc-number">3.</span> <span class="toc-text">¶安装</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#环境"><span class="toc-number">1.</span> <span class="toc-text">¶环境:</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#文件准备"><span class="toc-number">1.1.</span> <span class="toc-text">¶文件准备</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装准备"><span class="toc-number">2.</span> <span class="toc-text">¶安装准备</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-hosts-file"><span class="toc-number">2.0.1.</span> <span class="toc-text">¶1.Hosts file</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-配置-etc-sysctl-conf"><span class="toc-number">2.0.2.</span> <span class="toc-text">¶2.配置/etc/sysctl.conf</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-配置-etc-security-limits-d-20-nproc-conf"><span class="toc-number">2.0.3.</span> <span class="toc-text">¶3.配置/etc/security/limits.d/20-nproc.conf</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-安装一些包："><span class="toc-number">2.0.4.</span> <span class="toc-text">¶4.安装一些包：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-创建用户和组"><span class="toc-number">2.0.5.</span> <span class="toc-text">¶5.创建用户和组</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-关闭selinux和防火墙："><span class="toc-number">2.0.6.</span> <span class="toc-text">¶6.关闭selinux和防火墙：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-创建目录："><span class="toc-number">2.0.7.</span> <span class="toc-text">¶7.创建目录：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#8-配置环境变量："><span class="toc-number">2.0.8.</span> <span class="toc-text">¶8.配置环境变量：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装"><span class="toc-number">3.</span> <span class="toc-text">¶安装</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-编辑应答文件：-vi-u01-database-response-db-install-rsp"><span class="toc-number">3.0.1.</span> <span class="toc-text">¶1.编辑应答文件： vi /u01/database/response/db_install.rsp</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-开始安装"><span class="toc-number">3.0.2.</span> <span class="toc-text">¶2.开始安装:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-安装提示执行两个脚本："><span class="toc-number">3.0.3.</span> <span class="toc-text">¶3.安装提示执行两个脚本：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-配置-添加监听："><span class="toc-number">3.0.4.</span> <span class="toc-text">¶4.配置，添加监听：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-创建数据库-修改相应文件-有些参数有默认值就不需要"><span class="toc-number">3.0.5.</span> <span class="toc-text">¶5.创建数据库，修改相应文件，有些参数有默认值就不需要</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-创建数据库"><span class="toc-number">3.0.6.</span> <span class="toc-text">¶6.创建数据库</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-查看状态"><span class="toc-number">3.0.7.</span> <span class="toc-text">¶7.查看状态</span></a></li></ol></li></ol></li></ol>
 </div>
 <style>
     .left-col .switch-btn {
