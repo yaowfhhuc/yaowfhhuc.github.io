@@ -17,7 +17,7 @@
 <meta property="og:site_name" content="程序猿天度">
 <meta property="og:description" content="¶环境: 	OS:centos7 	Oracle:Oracle 12.2.0.1    database安装文件下载 官网 我的网盘:  链接:https://pan.baidu.com/s/1Sbw3ZjkJePr989IPqs7D9g   密码：qkt1">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-04-24T12:34:46.267Z">
+<meta property="og:updated_time" content="2018-04-24T13:35:01.416Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CentOS下 Oracle 12c R2 静默安装">
 <meta name="twitter:description" content="¶环境: 	OS:centos7 	Oracle:Oracle 12.2.0.1    database安装文件下载 官网 我的网盘:  链接:https://pan.baidu.com/s/1Sbw3ZjkJePr989IPqs7D9g   密码：qkt1">
@@ -328,20 +328,15 @@
 <h3 id="安装准备"><a class="header-anchor" href="#安装准备">¶</a>安装准备</h3>
 <ul>
 <li>
-<ol>
-<li>
-<p>、Hosts file</p>
-<p>cat /etc/hosts<br>
-127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4<br>
-::1         localhost localhost.localdomain localhost6 localhost6.localdomain6<br>
-192.168.0.109   centos7</p>
-</li>
-</ol>
+<p>1、Hosts file</p>
+<pre><code>cat /etc/hosts  
+127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4  
+::1         localhost localhost.localdomain localhost6 localhost6.localdomain6  
+192.168.0.109   centos7  
+</code></pre>
 </li>
 <li>
-<ol start="2">
-<li>、配置/etc/sysctl.conf</li>
-</ol>
+<p>2、配置/etc/sysctl.conf</p>
 </li>
 </ul>
 <pre><code>	[root@centos7 ~]# vim /etc/sysctl.conf  
@@ -370,11 +365,7 @@
 	[root@centos7 ~]# /sbin/sysctl -p
 </code></pre>
 <ul>
-<li>
-<ol start="3">
-<li>、配置/etc/security/limits.d/20-nproc.conf</li>
-</ol>
-</li>
+<li>3、配置/etc/security/limits.d/20-nproc.conf</li>
 </ul>
 <pre><code>	[root@centos7 ~]# vim /etc/security/limits.d/20-nproc.conf  
 	# Default limit for number of user's processes to prevent  
@@ -394,17 +385,12 @@
 </code></pre>
 <ul>
 <li>
-<ol start="4">
-<li>
-<p>、安装一些包：</p>
-<p>yum install -y binutils     compat-libcap1   compat-libstdc+±33   compat-libstdc+±33.i686   glibc   glibc.i686   glibc-devel   glibc-devel.i686   ksh   libaio   libaio.i686   libaio-devel   libaio-devel.i686   libX11   libX11.i686   libXau   libXau.i686   libXi   libXi.i686   libXtst   libXtst.i686   libgcc   libgcc.i686   libstdc++   libstdc++.i686   libstdc+±devel   libstdc+±devel.i686   libxcb   libxcb.i686   make   nfs-utils   net-tools   smartmontools   sysstat   unixODBC   unixODBC-devel   gcc    gcc-c++    libXext    libXext.i686    zlib-devel    zlib-devel.i686</p>
-</li>
-</ol>
+<p>4、安装一些包：</p>
+<pre><code>yum install -y binutils     compat-libcap1   compat-libstdc++-33   compat-libstdc++-33.i686   glibc   glibc.i686   glibc-devel   glibc-devel.i686   ksh   libaio   libaio.i686   libaio-devel   libaio-devel.i686   libX11   libX11.i686   libXau   libXau.i686   libXi   libXi.i686   libXtst   libXtst.i686   libgcc   libgcc.i686   libstdc++   libstdc++.i686   libstdc++-devel   libstdc++-devel.i686   libxcb   libxcb.i686   make   nfs-utils   net-tools   smartmontools   sysstat   unixODBC   unixODBC-devel   gcc    gcc-c++    libXext    libXext.i686    zlib-devel    zlib-devel.i686
+</code></pre>
 </li>
 <li>
-<ol start="5">
-<li>、创建用户和组</li>
-</ol>
+<p>5、创建用户和组</p>
 </li>
 </ul>
 <pre><code>	[root@centos7 ~]# unzip linuxx64_12201_database.zip ^C  
@@ -416,58 +402,52 @@
 </code></pre>
 <ul>
 <li>
-<ol start="6">
-<li>
-<p>、关闭selinux和防火墙：</p>
-<p>vim /etc/selinux/config<br>
-SELINUX=disabled<br>
-[root@centos7 ~]# systemctl stop firewalld<br>
-[root@centos7 ~]# systemctl disable firewalld</p>
+<p>6、关闭selinux和防火墙：</p>
+<pre><code>vim /etc/selinux/config  
+SELINUX=disabled  
+[root@centos7 ~]# systemctl stop firewalld  
+[root@centos7 ~]# systemctl disable firewalld  
+</code></pre>
 </li>
-</ol>
-</li>
-</ul>
-<ul>
 <li>
-<ol start="7">
-<li>
-<p>、创建目录：</p>
-<p>[root@centos7 ~]# mkdir -p /u01/app/oracle/product/12.2.0.1/db_1<br>
-[root@centos7 ~]#<br>
-[root@centos7 ~]# chown -R oracle:oinstall /u01<br>
-[root@centos7 ~]# chmod 775 /u01</p>
+<p>7、创建目录：</p>
+<pre><code>[root@centos7 ~]# mkdir -p /u01/app/oracle/product/12.2.0.1/db_1  
+[root@centos7 ~]#  
+[root@centos7 ~]# chown -R oracle:oinstall /u01  
+[root@centos7 ~]# chmod 775 /u01  
+</code></pre>
 </li>
-</ol>
-</li>
-</ul>
-<ul>
 <li>
-<ol start="8">
-<li>
-<p>、配置环境变量：</p>
-<p>[root@centos7 ~]# vim /home/oracle/.bash_profile</p>
-<h1>.bash_profile</h1>
-<h1>Get the aliases and functions</h1>
-<p>if [ -f ~/.bashrc ]; then<br>
-. ~/.bashrc<br>
-fi</p>
-<h1>User specific environment and startup programs</h1>
-<p>PATH=$PATH:$HOME/.local/bin:$HOME/bin</p>
-<p>export PATH</p>
-<h1>Oracle Settings</h1>
-<p>export TMP=/tmp<br>
-export TMPDIR=$TMP</p>
-<p>export ORACLE_HOSTNAME=centos7<br>
-export ORACLE_UNQNAME=cdb<br>
-export ORACLE_BASE=/u01/app/oracle<br>
-export ORACLE_HOME=$ORACLE_BASE/product/12.2.0.1/db_1<br>
-export ORACLE_SID=cdb</p>
-<p>export PATH=/usr/sbin:$PATH<br>
-export PATH=$ORACLE_HOME/bin:$PATH</p>
-<p>export LD_LIBRARY_PATH=$ORACLE_HOME/lib:/lib:/usr/lib<br>
-export CLASSPATH=$ORACLE_HOME/jlib:$ORACLE_HOME/rdbms/jlib</p>
-</li>
-</ol>
+<p>8、配置环境变量：</p>
+<pre><code>[root@centos7 ~]# vim /home/oracle/.bash_profile  
+# .bash_profile  
+  
+# Get the aliases and functions  
+if [ -f ~/.bashrc ]; then  
+        . ~/.bashrc  
+fi  
+  
+# User specific environment and startup programs  
+  
+PATH=$PATH:$HOME/.local/bin:$HOME/bin  
+  
+export PATH  
+# Oracle Settings  
+export TMP=/tmp  
+export TMPDIR=$TMP  
+  
+export ORACLE_HOSTNAME=centos7  
+export ORACLE_UNQNAME=cdb  
+export ORACLE_BASE=/u01/app/oracle  
+export ORACLE_HOME=$ORACLE_BASE/product/12.2.0.1/db_1  
+export ORACLE_SID=cdb  
+  
+export PATH=/usr/sbin:$PATH  
+export PATH=$ORACLE_HOME/bin:$PATH  
+  
+export LD_LIBRARY_PATH=$ORACLE_HOME/lib:/lib:/usr/lib  
+export CLASSPATH=$ORACLE_HOME/jlib:$ORACLE_HOME/rdbms/jlib  
+</code></pre>
 </li>
 </ul>
 <hr>
@@ -752,7 +732,7 @@ OPEN
         <p><span>本文标题:</span><a  href="/2018/04/22/Oracle-12c-R2_静默安装/">CentOS下 Oracle 12c R2 静默安装</a></p>
         <p><span>文章作者:</span><a  href="/" title="访问 天度 的个人博客">天度</a></p>
         <p><span>发布时间:</span>2018年04月22日 - 00时00分</p>
-        <p><span>最后更新:</span>2018年04月24日 - 20时34分</p>
+        <p><span>最后更新:</span>2018年04月24日 - 21时35分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2018/04/22/Oracle-12c-R2_静默安装/" title="CentOS下 Oracle 12c R2 静默安装">http://www.blog.tiandu.tech/2018/04/22/Oracle-12c-R2_静默安装/</a>
             <span class="copy-path" data-clipboard-text="原文: http://www.blog.tiandu.tech/2018/04/22/Oracle-12c-R2_静默安装/　　作者: 天度" title=""></span>
@@ -789,7 +769,7 @@ OPEN
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#环境"><span class="toc-number">1.</span> <span class="toc-text">¶环境:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装准备"><span class="toc-number">2.</span> <span class="toc-text">¶安装准备</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#undefined"><span class="toc-number"></span> <span class="toc-text">.bash_profile</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#undefined"><span class="toc-number"></span> <span class="toc-text">Get the aliases and functions</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#undefined"><span class="toc-number"></span> <span class="toc-text">User specific environment and startup programs</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#undefined"><span class="toc-number"></span> <span class="toc-text">Oracle Settings</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装"><span class="toc-number">1.</span> <span class="toc-text">¶安装</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#环境"><span class="toc-number">1.</span> <span class="toc-text">¶环境:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装准备"><span class="toc-number">2.</span> <span class="toc-text">¶安装准备</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装"><span class="toc-number">3.</span> <span class="toc-text">¶安装</span></a></li></ol>
 </div>
 <style>
     .left-col .switch-btn {
